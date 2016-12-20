@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import * as actions from '../actions';
 import {getDetailIsFetching, getDetailIds} from '../reducers';
-import Detail from './Detail';
+import DetailPage from './DetailPage';
 import * as api from '../api';
 
-class NewsDetail extends React.Component {
+class DetailContainer extends React.Component {
 
   componentDidMount() {
     const {details, id} = this.props;
@@ -16,8 +16,7 @@ class NewsDetail extends React.Component {
   }
 
   fetchData() {
-    const {requestDetails, fetchDetails, id} = this.props;
-    requestDetails();
+    const {fetchDetails, id} = this.props;
     const opts = {path: id, show: 'all'};
     const url = api.generateUrl(opts);
     console.log(url);
@@ -27,14 +26,14 @@ class NewsDetail extends React.Component {
   render() {
     const {details, id, isFetching} = this.props;
     const news = details[id];
-    
+
     if (!news || isFetching) {
       return <p>Loading...</p>
     }
 
     return (
       <div>
-        <Detail news={news} />
+        <DetailPage news={news} />
       </div>
     );
   }
@@ -46,9 +45,9 @@ const mapStateToProps = (state, {params}) => ({
   isFetching: getDetailIsFetching(state)
 });
 
-NewsDetail = withRouter(connect(
+DetailContainer = withRouter(connect(
   mapStateToProps,
   actions
-)(NewsDetail));
+)(DetailContainer));
 
-export default NewsDetail;
+export default DetailContainer;

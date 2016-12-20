@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NewsList from './NewsList';
+import Box from './Box';
+import PageFooter from './PageFooter';
 import * as actions from '../actions';
 import * as api from '../api';
 import {getList, getIsFetching, getOpts} from '../reducers';
@@ -28,25 +30,26 @@ class NewsMain extends React.Component {
   }
 
   fetchData() {
-    const {fetchNews, requestNews, opts} = this.props;
-    requestNews();
+    const {fetchNews, opts} = this.props;
     const url = api.generateUrl(opts);
     console.log(url);
     fetchNews(url);
   }
 
   render() {
-    const {list, isFetching} = this.props;
+    const {list, isFetching, toggleNews} = this.props;
 
     if (isFetching && !list.length) {
       return <p>Loading...</p>
     }
     return (
-      <div>
+      <div className="main">
         <header>
           <h1>News</h1>
         </header>
         <NewsList list={list}/>
+        <Box/>
+        <PageFooter />
       </div>
     );
   }

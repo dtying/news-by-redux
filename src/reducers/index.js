@@ -1,8 +1,9 @@
 import {combineReducers} from 'redux';
-import byId, {getById} from './byId';
+import byId, * as fromById from './byId';
 import createList, * as fromList from './createList';
 import opts, * as fromOpts from './opts';
 import createDetails, * as fromDetails from './createDetails';
+
 
 const newsApp = combineReducers({
   byId,
@@ -13,9 +14,12 @@ const newsApp = combineReducers({
 
 export default newsApp;
 
+
+export const getReadById= (state, id) => fromById.getReadById(state.byId, id);
+
 export const getList = (state) => {
   const ids = fromList.getList(state.listByFilter);
-  return ids.map(id => getById(state.byId, id));
+  return ids.map(id => fromById.getById(state.byId, id));
 };
 
 

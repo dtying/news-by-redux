@@ -15,18 +15,17 @@ const logger = (store) => (next) => (action) => {
   return returnValue;
 };
 
-const promise = (store) => (next) => (action) => {
-  if (typeof action.then === 'function') {
-    return action.then(next);
+const thunk = (store) => (next) => (action) => {
+  if (typeof action === 'function') {
+    return action(store.dispatch);
   }
-
   return next(action);
 };
 
 const configureStore = () => {
-  let middlewares = [promise];
+  let middlewares = [thunk];
 
-  if(process.env.NODE_ENV !== 'production'){
+  if (process.env.NODE_ENV !== 'production') {
     middlewares.push(logger);
   }
 

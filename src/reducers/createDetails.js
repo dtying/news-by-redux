@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 const createDetails = () => {
   const ids = (state = {}, action) => {
     switch (action.type) {
-      case 'RECEIVE_DETAILS':
+      case 'FETCH_DETAILS_SUCCESS':
         return {
           ...state,
           [action.response.id]: action.response
@@ -15,9 +15,9 @@ const createDetails = () => {
 
   const isFetching = (state = false, action) => {
     switch (action.type) {
-      case 'REQUEST_DETAILS':
+      case 'FETCH_DETAILS_REQUEST':
         return true;
-      case 'RECEIVE_DETAILS':
+      case 'FETCH_DETAILS_SUCCESS':
         return false;
       default:
         return state;

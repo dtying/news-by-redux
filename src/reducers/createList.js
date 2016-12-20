@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 const createList = () => {
   const ids = (state = [], action) => {
     switch (action.type) {
-      case 'RECEIVE_NEWS':
+      case 'FETCH_NEWS_SUCCESS':
         return [...state,
           ...action.response.map(news => news.id)];
       default:
@@ -13,9 +13,9 @@ const createList = () => {
 
   const isFetching = (state = false, action) => {
     switch (action.type) {
-      case 'REQUEST_NEWS':
+      case 'FETCH_NEWS_REQUEST':
         return true;
-      case 'RECEIVE_NEWS':
+      case 'FETCH_NEWS_SUCCESS':
         return false;
       default:
         return state;
@@ -31,5 +31,4 @@ const createList = () => {
 export default createList;
 
 export const getList = (state) => state.ids;
-
 export const getIsFetching = (state) => state.isFetching;

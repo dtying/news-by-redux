@@ -5,27 +5,40 @@ export const toggleNews = (id) => ({
   id
 });
 
-const receiveNews = (response) => ({
-  type: 'RECEIVE_NEWS',
-  response: response.results
-});
 
-export const fetchNews = (url) =>
-  api.fetchNews(url).then(response => receiveNews(response));
+export const fetchNews = (url) => (dispatch) => {
+  dispatch({
+    type: 'FETCH_NEWS_REQUEST'
+  });
+
+  return api.fetchNews(url).then(
+    response => dispatch({
+      type: 'FETCH_NEWS_SUCCESS',
+      response: response.results
+    }),
+    error => dispatch({
+      type: 'FETCH_NEWS_FAILURE',
+      error
+    }));
+};
 
 
-export const requestNews = () => ({
-  type: 'REQUEST_NEWS'
-});
+export const fetchDetails = (url) => (dispatch) => {
+  dispatch({
+    type: 'FETCH_DETAILS_REQUEST'
+  });
 
-export const receiveDetails = (response) => ({
-  type: 'RECEIVE_DETAILS',
-  response: response.content
-});
+  return api.fetchNews(url).then(
+    response => dispatch({
+      type: 'FETCH_DETAILS_SUCCESS',
+      response: response.content
+    }),
+    error => dispatch({
+      type: 'FETCH_DETAILS_FAILURE',
+      error
+    }));
+};
 
-export const fetchDetails = (url) =>
-  api.fetchNews(url).then(response => receiveDetails(response));
 
-export const requestDetails = () => ({
-  type: 'REQUEST_DETAILS'
-});
+
+

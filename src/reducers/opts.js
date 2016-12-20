@@ -1,6 +1,6 @@
 const opts = (state = {page: 1}, action) => {
   switch (action.type) {
-    case 'RECEIVE_NEWS':
+    case 'FETCH_NEWS_SUCCESS':
       return {
         ...state,
         page: state.page + 1
