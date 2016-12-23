@@ -11,7 +11,7 @@ class NewsLink extends React.Component {
       <li key={news.id} onClick={()=>toggleNews(news.id)}>
         <Link to={'details/' + news.id}
               style={{color: '#000'}}>
-          <h3 style={{color: isRead ? '#038543' : '#000'}}>{news.webTitle}</h3>
+          <h4 style={{color: isRead ? '#038543' : '#000'}}>{news.webTitle}</h4>
         </Link>
         <p>{news.sectionName}</p>
       </li>

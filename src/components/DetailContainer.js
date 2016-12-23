@@ -4,6 +4,7 @@ import {withRouter} from 'react-router';
 import * as actions from '../actions';
 import {getDetailIsFetching, getDetailIds} from '../reducers';
 import DetailPage from './DetailPage';
+import Spinner from './Spinner';
 import * as api from '../api';
 
 class DetailContainer extends React.Component {
@@ -28,8 +29,9 @@ class DetailContainer extends React.Component {
     const news = details[id];
 
     if (!news || isFetching) {
-      return <p>Loading...</p>
+      return <Spinner />
     }
+
 
     return (
       <div>

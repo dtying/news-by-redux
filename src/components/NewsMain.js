@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import NewsList from './NewsList';
-import Box from './Box';
+import LoadingBox from './LoadingBox';
 import PageFooter from './PageFooter';
+import Spinner from './Spinner';
 import * as actions from '../actions';
 import * as api from '../api';
 import {getList, getIsFetching, getOpts} from '../reducers';
@@ -15,7 +16,7 @@ class NewsMain extends React.Component {
       if (api.getPixelsFromScrollBarToBottom() < 200 && !this.props.isFetching) {
         this.fetchData()
       }
-    }, 1000).bind(this);
+    }, 300).bind(this);
   }
 
   componentDidMount() {
@@ -37,10 +38,10 @@ class NewsMain extends React.Component {
   }
 
   render() {
-    const {list, isFetching, toggleNews} = this.props;
+    const {list, isFetching} = this.props;
 
     if (isFetching && !list.length) {
-      return <p>Loading...</p>
+      return <Spinner />
     }
     return (
       <div className="main">
@@ -48,7 +49,7 @@ class NewsMain extends React.Component {
           <h1>News</h1>
         </header>
         <NewsList list={list}/>
-        <Box/>
+        <LoadingBox isFetching={isFetching}/>
         <PageFooter />
       </div>
     );

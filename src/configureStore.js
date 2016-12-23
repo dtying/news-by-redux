@@ -1,6 +1,8 @@
 import {createStore, applyMiddleware} from 'redux';
 import newsMain from './reducers';
 
+
+
 const logger = (store) => (next) => (action) => {
   if (!console.group) {
     return next(action);
@@ -29,10 +31,12 @@ const configureStore = () => {
     middlewares.push(logger);
   }
 
+
   const store = createStore(
     newsMain,
     applyMiddleware(...middlewares)
   );
+
 
   return store;
 };

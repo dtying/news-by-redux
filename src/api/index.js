@@ -23,7 +23,7 @@ export const fetchNews = (url) => {
 
 export const generateUrl = (opts = {}) => {
   const apiKey = __API_KEY__;
-  const URL = 'http://content.guardianapis.com/search';
+  const URL = 'https://content.guardianapis.com/search';
   const pageSize = 15;
 
   let loading = false;
