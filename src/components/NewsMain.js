@@ -20,7 +20,7 @@ class NewsMain extends React.Component {
   }
 
   componentDidMount() {
-    if(!this.props.list.length){
+    if(this.props.list.length === 0){
       this.fetchData();
     }
     window.addEventListener('scroll', this.scrollListener, false);
@@ -45,9 +45,6 @@ class NewsMain extends React.Component {
     }
     return (
       <div className="main">
-        <header>
-          <h1>News</h1>
-        </header>
         <NewsList list={list}/>
         <LoadingBox isFetching={isFetching}/>
         <PageFooter />
@@ -62,6 +59,8 @@ const mapStateToProps = (state) => ({
   isFetching: getIsFetching(state),
   opts: getOpts(state)
 });
+
+
 
 NewsMain = connect(
   mapStateToProps,

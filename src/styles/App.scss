@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
 .main {
   background-color: #f5f8fa;
   font-family: 'Montserrat', sans-serif;
@@ -16,13 +29,43 @@ header {
   background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
 
+
   & h1 {
+    display: inline-block;
     margin: 10px 0 0 50px;
     color: #038543;
     width: 100px;
     text-decoration: none;
     text-transform: uppercase;
     letter-spacing: 1px;
+  }
+
+  & .searchbox {
+    display: inline-block;
+    position: absolute;
+    left: 180px;
+    top: 10px;
+
+    & .box {
+      padding-left: 10px;
+      padding-right: 30px;
+      width: 150px;
+      height: 30px;
+      background-color: #f5f8fa;
+      border: 1px solid #e1e8ed;
+      border-radius: 20px;
+
+      &:focus{
+        background-color: #fff;
+        outline: none;
+      }
+    }
+
+    & .icon{
+      position: absolute;
+      right: 10px;
+      margin-top: 10px;
+    }
   }
 }
 
@@ -34,7 +77,7 @@ header {
   margin: 0 auto;
   padding: 0;
 
-  &  li {
+  & li {
     list-style: none;
     display: inline-block;
     background-color: #fff;
@@ -48,18 +91,28 @@ header {
 
     vertical-align: top;
 
-    &:hover{
+    &:hover {
       background-color: #f5f8fa;
       transition: .2s;
     }
 
-    & h4{
+    & h4 {
       line-height: 1.6;
     }
 
-    & p{
+    & .tag-name {
       color: #038543;
       font-size: 0.8rem;
+    }
+
+    & .favourite{
+      float: right;
+      font-size: 20px;
+
+      &:hover{
+        cursor: pointer;
+        color: #FF1493;
+      }
     }
   }
 
@@ -67,16 +120,15 @@ header {
     text-decoration: none;
   }
 
-
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
     & li {
       width: 46%;
       margin: 10px 2%;
     }
   }
 
-  @media (min-width: 992px){
-    & li{
+  @media (min-width: 992px) {
+    & li {
       width: 31.33%;
       margin: 10px 1%;
     }
@@ -84,8 +136,9 @@ header {
 
 }
 
-
-.detail-wrapper{
+.detail-wrapper {
+  position: relative;
+  top: 50px;
   background-color: #f5f8fa;
 }
 
@@ -95,38 +148,35 @@ header {
   background-color: #fff;
   border: 1px solid #e5e5e5;
 
-  & h3{
+  & h3 {
     padding: 0 5%;
     line-height: 1.5;
   }
 
-  & img{
+  & img {
     display: block;
     margin: 0 auto;
     width: 100%;
   }
 
-  & p{
+  & p {
     margin: 2rem;
     color: #121212;
     font-size: 1rem;
     line-height: 1.8;
   }
 
-  @media (min-width: 768px){
+  @media (min-width: 768px) {
 
-    & p{
+    & p {
       font-size: 1rem;
     }
   }
 
-  @media (min-width: 992px){
+  @media (min-width: 992px) {
     width: 800px;
   }
 }
-
-
-
 
 @keyframes bounce {
   0%, 80%, 100% {
@@ -138,7 +188,7 @@ header {
 }
 
 .bounce {
-  animation: bounce 1s ease-in-out infinite;
+  animation: bounce 1.5s ease-in-out infinite;
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -150,32 +200,31 @@ header {
   transform: translate(-50%, -50%);
 }
 
-
-footer{
+footer {
   position: fixed;
   bottom: 0;
-  left: 0;
+  right: 0;
   width: 100%;
   height: 70px;
   z-index: 10;
   background-color: #e5f2ec;
   text-align: center;
+  transition: width 0.5s ease-in-out;
 
-  & h5{
+  & h5 {
     margin: 0;
     display: inline-block;
     line-height: 40px;
   }
 
-
-  & ul{
+  & ul {
     padding: 0;
     margin: 0;
     display: inline-block;
     vertical-align: sub;
   }
 
-  & li{
+  & li {
     list-style: none;
     margin: 0;
     text-align: center;
@@ -188,23 +237,35 @@ footer{
     right: 5px;
     color: #91a4ab;
     font-weight: bold;
-    transition: 0.3s;
 
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
 
+  & .lt {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    transform: translate (-50%, 0);
+    color: #91a4ab;
+    font-weight: bold;
+    visibility: hidden;
 
-  @media (min-width: 768px){
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  @media (min-width: 768px) {
     height: 50px;
     line-height: 50px;
 
-    & h5{
+    & h5 {
       margin-right: 5rem;
     }
 
-    .close{
+    .close {
       line-height: 20px;
       font-size: 1.5rem;
       top: 10px;
@@ -213,6 +274,48 @@ footer{
   }
 }
 
+.search-result-page {
+  position: relative;
+  top: 50px;
+  width: 100%;
+  margin: 0 auto;
 
+  @media (min-width: 768px) {
+    width: 700px;
+  }
+
+  @media (min-width: 992px) {
+    width: 900px;
+  }
+
+  & .search-result {
+    & li {
+      line-height: 1.8;
+      & a {
+        &:hover {
+          color: #038543;
+        }
+      }
+    }
+  }
+
+  & .footer {
+    text-align: center;
+    & .prev-page-btn {
+      float: left;
+      &:hover {
+        color: #038543;
+      }
+    }
+
+    & .next-page-btn {
+      float: right;
+      &:hover {
+        color: #038543;
+      }
+    }
+  }
+
+}
 
 

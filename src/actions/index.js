@@ -5,6 +5,10 @@ export const toggleNews = (id) => ({
   id
 });
 
+export const toggleFavourite = (id) => ({
+  type: 'TOGGLE_FAVOURITE',
+  id
+});
 
 export const fetchNews = (url) => (dispatch) => {
   dispatch({
@@ -40,5 +44,47 @@ export const fetchDetails = (url) => (dispatch) => {
 };
 
 
+export const inputKeyword = (keyword) => ({
+  type: 'INPUT_KEYWORD',
+  keyword
+});
 
 
+export const updateLastQuery = (keyword) => ({
+  type: 'UPDATE_LAST_QUERY',
+  keyword
+});
+
+
+export const updateLastPage = (page) => ({
+  type: 'UPDATE_LAST_PAGE',
+  page
+});
+
+export const searchKeyword = (opts) => (dispatch) => {
+  dispatch({
+    type: 'SEARCH_KEYWORD_REQUEST'
+  });
+
+  const url = api.generateUrl(opts);
+
+  return api.fetchNews(url).then(
+    response => dispatch({
+      type: 'SEARCH_KEYWORD_SUCCESS',
+      response: response.results
+    }),
+    error => dispatch({
+      type: 'SEARCH_KEYWORD_FAILURE',
+      error
+    })
+  );
+};
+
+export const gotoNextPage = () => ({
+  type: 'GOTO_NEXT_PAGE'
+});
+
+
+export const gotoPrevPage = () => ({
+  type: 'GOTO_PREV_PAGE'
+});
