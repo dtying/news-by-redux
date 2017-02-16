@@ -12,10 +12,10 @@ import SearchResultContainer from './SearchResultContainer';
 const Root = ({store}) =>
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/news-by-redux-demo" component={App}>
+      <Route path="/news-by-redux-demo/" component={App}>
         <IndexRoute component={NewsMain}/>
-        <Route path="/details/**" component={DetailContainer}/>
-        <Route path="/search**" component={SearchResultContainer}/>
+        <Route path="details/**" component={DetailContainer}/>
+        <Route path="search**" component={SearchResultContainer}/>
       </Route>
     </Router>
   </Provider>;

@@ -32,7 +32,7 @@ header {
 
   & h1 {
     display: inline-block;
-    margin: 10px 0 0 50px;
+    margin: 10px 0 0 30px;
     color: #038543;
     width: 100px;
     text-decoration: none;
@@ -43,7 +43,7 @@ header {
   & .searchbox {
     display: inline-block;
     position: absolute;
-    left: 180px;
+    left: 150px;
     top: 10px;
 
     & .box {
@@ -92,12 +92,16 @@ header {
     vertical-align: top;
 
     &:hover {
-      background-color: #f5f8fa;
+      background-color: #e5e5e5;
       transition: .2s;
     }
 
     & h4 {
       line-height: 1.6;
+
+      &:active{
+        color: #038543;
+      }
     }
 
     & .tag-name {
@@ -105,13 +109,13 @@ header {
       font-size: 0.8rem;
     }
 
-    & .favourite{
-      float: right;
-      font-size: 20px;
 
+    & .like-top{
+      cursor: pointer;
+      float: right;
+      font-size: 30px;
       &:hover{
-        cursor: pointer;
-        color: #FF1493;
+        color: #038543;
       }
     }
   }
@@ -133,7 +137,6 @@ header {
       margin: 10px 1%;
     }
   }
-
 }
 
 .detail-wrapper {
@@ -160,21 +163,28 @@ header {
   }
 
   & p {
-    margin: 2rem;
+    margin: 1rem;
     color: #121212;
-    font-size: 1rem;
+    font-size: 0.7rem;
     line-height: 1.8;
+    text-align: justify;
   }
 
   @media (min-width: 768px) {
 
     & p {
+      margin: 2rem;
       font-size: 1rem;
     }
   }
 
   @media (min-width: 992px) {
     width: 800px;
+
+    & p {
+      margin: 2rem;
+      font-size: 1rem;
+    }
   }
 }
 
@@ -302,14 +312,14 @@ footer {
   & .footer {
     text-align: center;
     & .prev-page-btn {
-      float: left;
+      padding-right: 50px;
       &:hover {
         color: #038543;
       }
     }
 
     & .next-page-btn {
-      float: right;
+      padding-left: 50px;
       &:hover {
         color: #038543;
       }

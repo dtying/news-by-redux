@@ -2,45 +2,41 @@ import React from 'react';
 import * as actions from '../actions';
 import {connect} from 'react-redux';
 import {getSearchOptsQuery, getSearchOptsPage, getSearchLastQuery, getSearchLastPage} from '../reducers';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 
 class SearchBox extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleClickSearch = this.handleClickSearch.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleChange(e) {
     const {inputKeyword} = this.props;
-    inputKeyword(event.target.value);
-  }
-
-  handleClickSearch() {
-    const {updateLastQuery, query, updateLastPage, page} = this.props;
-    updateLastQuery(query);
-    updateLastPage(page);
+    inputKeyword(e.target.value);
   }
 
   handleSubmit(e) {
-    console.log(e.target);
+    const {query, page} = this.props;
+    e.preventDefault();
+    browserHistory.push(`/news-by-redux-demo/search?query=${query}&page=${page}`);
   }
 
   render() {
     const {query, page} = this.props;
     return (
-      <form action="/search" method="get" className="searchbox" onSubmit={(e)=>this.handleSubmit(e)}>
-        <input className="box" type="text" placeholder="search" autoComplete="off" spellCheck="false" name="query" value={query}
-               onChange={event => this.handleChange(event)}/>
-        <input type="hidden" name="page" value={page} />
-        <Link to={`/search?query=${query}&page=${page}`}>
-          <img className="icon" src="/searchicon.png" onClick={()=>this.handleClickSearch()}/>
+      <form action="/news-by-redux-demo/search" method="get" className="searchbox" onSubmit={this.handleSubmit}>
+        <input className="box" type="text" placeholder="search" autoComplete="off" spellCheck="false" name="query"
+               value={query}
+               onChange={this.handleChange}/>
+        <input type="hidden" name="page" value={page}/>
+        <Link to={`/news-by-redux-demo/search?query=${query}&page=${page}`}>
+          <img className="icon" src="/news-by-redux-demo/images/searchicon.png" onClick={this.handleSubmit}/>
         </Link>
       </form>
     );
   }
 }
-
 
 const mapStateToProps = (state) => ({
   query: getSearchOptsQuery(state),

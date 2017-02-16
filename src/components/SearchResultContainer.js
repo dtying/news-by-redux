@@ -10,13 +10,16 @@ import Spinner from './Spinner';
 class SearchResultContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.handleGotoNextPage = this.handleGotoNextPage.bind(this);
   }
 
   componentDidMount() {
-    const {results, query, lastQuery, lastPage, opts} = this.props;
-    console.log(opts);
-    if (results.length === 0 || query !== lastQuery || lastPage !== 1) {
+    this.fetchSearchResult();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.query !== this.props.query) {
+      console.log(prevProps.query);
+      console.log(this.props.query);
       this.fetchSearchResult();
     }
   }
@@ -26,17 +29,17 @@ class SearchResultContainer extends React.Component {
     searchKeyword({query: query, page: page});
   }
 
-  handleGotoNextPage() {
-    const {gotoNextPage, searchKeyword, query, page} = this.props;
+  handleGotoNextPage = () => {
+    const {gotoNextPage, searchKeyword, query, page} = this.props;  
     gotoNextPage();
     searchKeyword({page: page - 0 + 1, query});
-  }
+  };
 
-  handleGotoPrevPage() {
+  handleGotoPrevPage = () => {
     const {gotoPrevPage, searchKeyword, query, page} = this.props;
     gotoPrevPage();
     searchKeyword({page: page - 0 - 1, query});
-  }
+  };
 
   render() {
     const {results, query, page, isFetching, opts} = this.props;
@@ -49,12 +52,14 @@ class SearchResultContainer extends React.Component {
       <div className="search-result-page">
         <SearchResultPage query={query} results={results}/>
         <div className="footer">
-          {page - 0 !== 1 ?
-            <Link className="prev-page-btn" to={`/search?query=${query}&page=${page-0-1}`} onClick={()=>this.handleGotoPrevPage()}>
-              <span>&lt;</span>
-            </Link> : null}
+          <Link className="prev-page-btn" to={`/news-by-redux-demo/search?query=${query}&page=${page-0-1}`}
+                onClick={this.handleGotoPrevPage}
+                style={{visibility: page - 0 !== 1 ? 'visible' : 'hidden'}}>
+            <span>&lt;</span>
+          </Link>
           <span>Page {page}</span>
-          <Link className="next-page-btn" to={`/search?query=${query}&page=${page-0+1}`} onClick={()=>this.handleGotoNextPage()}>
+          <Link className="next-page-btn" to={`/news-by-redux-demo/search?query=${query}&page=${page-0+1}`}
+                onClick={this.handleGotoNextPage}>
             <span>&gt;</span>
           </Link>
         </div>

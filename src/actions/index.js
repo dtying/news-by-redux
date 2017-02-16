@@ -67,6 +67,7 @@ export const searchKeyword = (opts) => (dispatch) => {
   });
 
   const url = api.generateUrl(opts);
+  console.log(url);
 
   return api.fetchNews(url).then(
     response => dispatch({

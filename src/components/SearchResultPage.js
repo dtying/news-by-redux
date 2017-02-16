@@ -8,7 +8,7 @@ const SearchResultPage = ({query, results}) => {
       <ul>
         {results.map((item) =>
           <li key={item.id}>
-            <Link to={`/details/${item.id}`}>
+            <Link to={`/news-by-redux-demo/details/${item.id}`}>
               {item.webTitle}
             </Link>
           </li>

@@ -5,19 +5,21 @@ import {getReadById, getIsFavouriteById} from '../reducers';
 import * as actions from '../actions';
 
 class NewsLink extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
 
   render() {
     const {news, toggleNews, isRead, toggleFavourite, isFavourite} = this.props;
     return (
-      <li key={news.id}>
-        <Link to={`/details/${news.id}`} style={{color: '#000'}} onClick={()=>toggleNews(news.id)}>
+      <li>
+        <Link to={`/news-by-redux-demo/details/${news.id}`} style={{color: '#000'}}
+              onClick={()=>toggleNews(news.id)}>
           <h4 style={{color: isRead ? '#038543' : '#000'}}>{news.webTitle}</h4>
         </Link>
         <span className="tag-name">{news.sectionName}</span>
-        <span className="favourite" onClick={() => toggleFavourite(news.id)} style={{color: isFavourite ? '#FF1493' : '#000'}}>&hearts;</span>
+        <a className="like-top" onClick={() => toggleFavourite(news.id)}
+              style={{color: isFavourite ? '#038543' : '#FFFFFF'}}>&#9733;</a>
       </li>
     );
   }

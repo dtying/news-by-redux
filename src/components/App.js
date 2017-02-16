@@ -7,7 +7,7 @@ class App extends React.Component {
     return (
       <div>
         <header>
-          <Link to="/news-by-redux-demo">
+          <Link to="/news-by-redux-demo/">
             <h1>News</h1>
           </Link>
           <SearchBox />

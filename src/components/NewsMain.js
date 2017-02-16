@@ -37,6 +37,7 @@ class NewsMain extends React.Component {
     fetchNews(url);
   }
 
+  
   render() {
     const {list, isFetching} = this.props;
 

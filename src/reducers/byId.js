@@ -6,7 +6,7 @@ const byId = (state = {}, action) => {
     case 'FETCH_NEWS_SUCCESS':
       let nextState = {...state};
       action.response.forEach(item =>
-        nextState[item.id] = {...item, ...read(undefined, action)});
+        nextState[item.id] = {...item, ...read(undefined, action), ...isFavourite(undefined, action)});
       return nextState;
     case 'TOGGLE_NEWS':
       return {
