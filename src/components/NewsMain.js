@@ -33,11 +33,10 @@ class NewsMain extends React.Component {
   fetchData() {
     const {fetchNews, opts} = this.props;
     const url = api.generateUrl(opts);
-    console.log(url);
     fetchNews(url);
   }
 
-  
+
   render() {
     const {list, isFetching} = this.props;
 

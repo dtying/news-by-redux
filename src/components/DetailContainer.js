@@ -20,7 +20,6 @@ class DetailContainer extends React.Component {
     const {fetchDetails, id} = this.props;
     const opts = {path: id, show: 'all'};
     const url = api.generateUrl(opts);
-    console.log(url);
     fetchDetails(url);
   }
 

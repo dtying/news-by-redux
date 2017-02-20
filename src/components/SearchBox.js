@@ -31,7 +31,7 @@ class SearchBox extends React.Component {
                onChange={this.handleChange}/>
         <input type="hidden" name="page" value={page}/>
         <Link to={`/news-by-redux-demo/search?query=${query}&page=${page}`}>
-          <img className="icon" src="/news-by-redux-demo/images/searchicon.png" onClick={this.handleSubmit}/>
+          <img className="icon" src="./images/searchicon.png" onClick={this.handleSubmit}/>
         </Link>
       </form>
     );
